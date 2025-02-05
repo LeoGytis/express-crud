@@ -23,4 +23,34 @@ router.get("/:id", (req, res) => {
   res.json(posts.filter((post) => post.id === id));
 });
 
+//Create new posts
+router.post("/", (req, res) => {
+  const newPost = {
+    id: posts.length + 1,
+    title: req.body.title,
+  };
+
+  if (!newPost.title) {
+    res.status(404).json({ msg: "Please include a tilte" });
+  }
+
+  posts.push(newPost);
+  console.log("🔥 :: req ::", req.body);
+  res.status(201).json(posts);
+});
+
+//Update posts
+router.put("/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const post = posts.find((post) => post.id === id);
+
+  if (!post) {
+    return res.status(404).json({ msg: "Post was not found" });
+  }
+
+  post.title = req.body.title || post.title;
+
+  res.status(201).json(posts);
+});
+
 export default router;
