@@ -1,23 +1,11 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 let posts = [
-  {
-    id: 1,
-    title: "Post ONE",
-  },
-  {
-    id: 2,
-    title: "Post 2",
-  },
-  {
-    id: 3,
-    title: "Post 3",
-  },
-  {
-    id: 4,
-    title: "Post 4",
-  },
+  { id: 1, title: "Post ONE" },
+  { id: 2, title: "Post 2" },
+  { id: 3, title: "Post 3" },
+  { id: 4, title: "Post 4" },
 ];
 
 router.get("/", (req, res) => {
@@ -26,9 +14,8 @@ router.get("/", (req, res) => {
   if (!isNaN(limit) && limit > 0) {
     res.json(posts.slice(0, limit));
   } else {
-    console.log("noo limit");
+    res.json(posts);
   }
-  //   res.json(posts);
 });
 
 router.get("/:id", (req, res) => {
