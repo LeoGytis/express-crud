@@ -4,8 +4,6 @@ let posts = [
   { id: 3, title: "Post Three" },
 ];
 
-// @desc   Get all posts
-// @route  GET /api/posts
 export const getPosts = (req, res, next) => {
   const limit = parseInt(req.query.limit);
 
@@ -16,8 +14,6 @@ export const getPosts = (req, res, next) => {
   res.status(200).json(posts);
 };
 
-// @desc    Get single post
-// @route   GET /api/posts/:id
 export const getPost = (req, res, next) => {
   const id = parseInt(req.params.id);
   const post = posts.find((post) => post.id === id);
@@ -31,8 +27,6 @@ export const getPost = (req, res, next) => {
   res.status(200).json(post);
 };
 
-// @desc    Create new post
-// @route   POST /api/posts
 export const createPost = (req, res, next) => {
   const newPost = {
     id: posts.length + 1,
@@ -49,8 +43,6 @@ export const createPost = (req, res, next) => {
   res.status(201).json(posts);
 };
 
-// @desc    Update post
-// @route   PUT /api/posts/:id
 export const updatePost = (req, res, next) => {
   const id = parseInt(req.params.id);
   const post = posts.find((post) => post.id === id);
@@ -65,8 +57,6 @@ export const updatePost = (req, res, next) => {
   res.status(200).json(posts);
 };
 
-// @desc    Delete post
-// @route   DELETE /api/posts/:id
 export const deletePost = (req, res, next) => {
   const id = parseInt(req.params.id);
   const post = posts.find((post) => post.id === id);
