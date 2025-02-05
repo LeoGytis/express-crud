@@ -1,5 +1,6 @@
 // Use this module to use import instead of require "type": "module",
 import express from "express";
+import errorHandler from "./middleware/error.js";
 import logger from "./middleware/logger.js";
 import posts from "./routes/posts.js";
 
@@ -22,5 +23,8 @@ app.use("/api/posts", posts);
 // // router.get("/", (req, res) => {
 // //   res.sendFile(path.join(__dirname, "public", "index.html")); // set absolute path
 // // });
+
+//Error hanlder
+app.use(errorHandler);
 
 app.listen(port, () => console.log("Server running on port:", port));
