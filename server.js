@@ -1,25 +1,33 @@
-// Use this module to use import instead of require "type": "module",
 import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 import errorHandler from "./middleware/error.js";
 import logger from "./middleware/logger.js";
 import notFound from "./middleware/notFound.js";
 import posts from "./routes/posts.js";
+const port = process.env.PORT || 8000;
 
-const port = process.env.PORT || 3003;
+// Get the directory name
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 
-//Body parser middleware
+// Body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//logger middleware
+// Logger middleware
 app.use(logger);
 
-//Routes
+// setup static folder
+app.use(express.static(path.join(__dirname, "public")));
+
+// Routes
 app.use("/api/posts", posts);
 
-//Error hanlder
+// Error handler
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(port, () => console.log("Server running on port:", port));
+app.listen(port, () => console.log(`Server is running on port ${port}`));
