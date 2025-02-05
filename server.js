@@ -1,5 +1,6 @@
 // Use this module to use import instead of require "type": "module",
 import express from "express";
+import logger from "./middleware/logger.js";
 import posts from "./routes/posts.js";
 
 const port = process.env.PORT || 3003;
@@ -9,6 +10,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//logger middleware
+app.use(logger);
+
+//Routes
 app.use("/api/posts", posts);
 
 // //setup static folder
