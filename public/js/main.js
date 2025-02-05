@@ -1,11 +1,13 @@
 const output = document.querySelector("#output");
-const button = document.querySelector("#get-posts-btn");
 const form = document.querySelector("#add-post-form");
+const button = document.querySelector("#get-posts-btn");
+button.addEventListener("click", showPosts);
+form.addEventListener("submit", addPost);
 
 // Get and show posts
 async function showPosts() {
   try {
-    const res = await fetch("http://localhost:3003/api/posts"); // Make sure this is correct
+    const res = await fetch("http://localhost:3003/api/posts");
     if (!res.ok) {
       throw new Error("Failed to fetch posts");
     }
@@ -51,7 +53,3 @@ async function addPost(e) {
     console.error("Error adding post");
   }
 }
-
-// Event listeners
-button.addEventListener("click", showPosts);
-form.addEventListener("submit", addPost);
