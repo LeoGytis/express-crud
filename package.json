@@ -2,7 +2,7 @@
   "name": "express-crud",
   "version": "1.0.0",
   "description": "This is express CRUD project",
-  "type": "module", 
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node server",
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.4.0",
     "express": "^4.21.2"
   }
 }

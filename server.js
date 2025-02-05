@@ -2,6 +2,7 @@
 import express from "express";
 import errorHandler from "./middleware/error.js";
 import logger from "./middleware/logger.js";
+import notFound from "./middleware/notFound.js";
 import posts from "./routes/posts.js";
 
 const port = process.env.PORT || 3003;
@@ -17,14 +18,8 @@ app.use(logger);
 //Routes
 app.use("/api/posts", posts);
 
-// //setup static folder
-// // app.use(express.static(path.join(__dirname, "public", "index.html")));
-
-// // router.get("/", (req, res) => {
-// //   res.sendFile(path.join(__dirname, "public", "index.html")); // set absolute path
-// // });
-
 //Error hanlder
+app.use(notFound);
 app.use(errorHandler);
 
 app.listen(port, () => console.log("Server running on port:", port));

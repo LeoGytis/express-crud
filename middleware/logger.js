@@ -1,21 +1,21 @@
-const logger = (req, res, next) => {
-  // const methodColors = {
-  //   GET: "green",
-  //   POST: "blue",
-  //   PUT: "yellow",
-  //   DELETE: "red",
-  // };
+import colors from "colors";
 
-  // const color = methodColors[req.method] || white;
+const logger = (req, res, next) => {
+  const methodColors = {
+    GET: "green",
+    POST: "blue",
+    PUT: "yellow",
+    DELETE: "red",
+  };
+
+  const color = methodColors[req.method] || "white";
 
   console.log(
-    `${req.method} ${req.protocol}://${req.get("host")}${req.originalUrl}`
+    colors[color](
+      `${req.method} ${req.protocol}://${req.get("host")}${req.originalUrl}`
+    )
   );
-  // console.log(
-  //   `${req.method} ${req.protocol}://${req.get("host")}${req.originalUrl}`[
-  //     color
-  //   ]
-  // );
+
   next();
 };
 

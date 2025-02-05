@@ -32,7 +32,7 @@ router.get("/:id", (req, res, next) => {
 });
 
 //Create new posts
-router.post("/", (req, res) => {
+router.post("/", (req, res, next) => {
   const newPost = {
     id: posts.length + 1,
     title: req.body.title,
@@ -48,7 +48,7 @@ router.post("/", (req, res) => {
 });
 
 //Update post
-router.put("/:id", (req, res) => {
+router.put("/:id", (req, res, next) => {
   const id = parseInt(req.params.id);
   const post = posts.find((post) => post.id === id);
 
@@ -63,7 +63,7 @@ router.put("/:id", (req, res) => {
 
 //Delete post
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", (req, res, next) => {
   const id = parseInt(req.params.id);
   const post = posts.find((post) => post.id === id);
 
